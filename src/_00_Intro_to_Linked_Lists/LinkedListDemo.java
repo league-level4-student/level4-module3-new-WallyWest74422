@@ -1,5 +1,7 @@
 package _00_Intro_to_Linked_Lists;
 
+import java.util.Iterator;
+
 public class LinkedListDemo {
 
     public static void main(String[] args) {
@@ -33,13 +35,23 @@ public class LinkedListDemo {
          */
     	
 LinkedList<Integer> ll = new LinkedList<Integer>();
-
-ll.add(3);
+Node<Integer> head = new Node<Integer>(3);
+ll.setHead(head);
 ll.add(4);
 ll.add(5);
 ll.add(6);
+ll.add(7);
+Node<Integer> tail = ll.getTail();
+ll.setTail(tail);
 ll.print();
-
+Node<Integer> current = ll.getTail();
+Node<Integer> previous = current.getPrev();
+while(current.getPrev()!=null) {
+current.setValue(current.getValue()*2);
+current = current.getPrev();
+}
+head.setValue(head.getValue()*2);
+ll.print();
     }
 
 }
