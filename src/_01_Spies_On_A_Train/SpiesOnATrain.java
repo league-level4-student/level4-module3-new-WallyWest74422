@@ -27,17 +27,17 @@ public class SpiesOnATrain {
 		HashMap<String, Integer> data = new HashMap<String, Integer>();
 		train.print();
 		Node<TrainCar> tail = train.getTail();
-		Node<TrainCar> head = train.getHead();
+//		Node<TrainCar> head = train.getHead();
 		train.setTail(tail);
 		Node<TrainCar> current = train.getTail();
-		Node<TrainCar> previous = current.getPrev();
+//		Node<TrainCar> previous = current.getPrev();
 		while (current.getPrev() != null) {
 			String words[] = current.getValue().questionPassenger().split(" ");
-System.out.println(current.getValue().questionPassenger());
+			System.out.println(current.getValue().questionPassenger());
 			suspect = words[13];
 			System.out.println(suspect);
-			if (data.get(suspect)!=null) {
-				data.put(suspect, (data.get(suspect)) + 1);
+			if (data.get(suspect) != null) {
+				data.replace(suspect, data.get(suspect), (data.get(suspect)) + 1);
 			} else {
 				data.put(suspect, 0);
 			}
@@ -46,17 +46,20 @@ System.out.println(current.getValue().questionPassenger());
 		String words[] = current.getValue().questionPassenger().split(" ");
 		suspect = words[13];
 		System.out.println(suspect);
-		if (data.get(suspect)!=null) {
-			data.put(suspect, (data.get(suspect)) + 1);
+		if (data.get(suspect) != null) {
+			data.replace(suspect, data.get(suspect), (data.get(suspect)) + 1);
 		} else {
 			data.put(suspect, 0);
 		}
-	      for(Integer s : data.values()){
-//	            System.out.println(s);
-	        }
-	      for(int i = 0; i<data.size(); i++) {
-	//    	  if()
-	      }
+		for (Integer s : data.values()) {
+			System.out.println(s);
+		}
+		for (String s : data.keySet()) {
+			if (data.get(s).equals(2)) {
+				return s;
+
+			}
+		}
 		return "";
 
 	}
