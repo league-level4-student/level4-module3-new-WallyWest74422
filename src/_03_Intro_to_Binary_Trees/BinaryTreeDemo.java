@@ -33,7 +33,17 @@ public class BinaryTreeDemo {
      */
 
     public static void main(String[] args) {
-
+BinaryTree <Integer> myFirstBinaryTree = new BinaryTree<Integer>();
+Node<Integer> parent = new Node<Integer>(1);
+parent = myFirstBinaryTree.getRoot();
+myFirstBinaryTree.insert(3);
+myFirstBinaryTree.insert(5);
+myFirstBinaryTree.insert(7);
+myFirstBinaryTree.insert(9);
+myFirstBinaryTree.insert(11);
+myFirstBinaryTree.printHorizontal();
+myFirstBinaryTree.delete(7);
+myFirstBinaryTree.printHorizontal();
     }
 
 }
