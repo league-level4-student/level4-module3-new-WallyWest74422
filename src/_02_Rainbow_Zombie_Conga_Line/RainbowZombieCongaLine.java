@@ -33,15 +33,21 @@ public class RainbowZombieCongaLine {
 
 	// Make the passed in zombie the first Zombie in the conga line!
 	public void engine(Zombie dancer) {
-		Node<Zombie> head = new Node<Zombie>(dancer);
 		congaLine.add(dancer);
-		congaLine.setHead(head);
+		Node<Zombie> first = new Node<Zombie>(dancer);
+congaLine.getHead().setPrev(first);
+first.setNext(congaLine.getHead());
+congaLine.setHead(first);
 	}
 
 	// Make the passed in zombie the last Zombie in the conga line!
 	public void caboose(Zombie dancer) {
-		Node<Zombie> tail = new Node<Zombie>(dancer);
+//		Node<Zombie> tail = new Node<Zombie>(dancer);
 		congaLine.add(dancer);
+		Node<Zombie> last = new Node<Zombie>(dancer);
+		last.setPrev(congaLine.getTail());
+		congaLine.getTail().setNext(last);
+		congaLine.setTail(last);
 	}
 
 	// Place the zombie at the designated position in the conga line!
@@ -50,11 +56,18 @@ public class RainbowZombieCongaLine {
 		Node<Zombie> pos = new Node<Zombie>(dancer);
 		int spot = 0;
 		Node<Zombie> current = congaLine.getHead();
+		Node<Zombie> previous = current.getPrev();
 		while (current != null) {
-			if (spot == position) {
-				current.setNext(pos);
+			if (spot == (position)) {	
+				previous.setNext(pos);
+				pos.setNext(current);
+			current.setPrev(pos);
+			pos.setNext(current);
+		
+				break;
  			}
 			current = current.getNext();
+			previous = current.getPrev();
 			spot = spot + 1;
 		}
 
@@ -100,24 +113,28 @@ public class RainbowZombieCongaLine {
 	 * one to the front, one to the end and one in the middle.
 	 */
 	public void brains(Zombie dancer) {
+		engine(dancer);
 		int middle = (congaLine.size()/2)-1;
 		Zombie new1 = new Zombie(dancer.getZombieHatColor());
-		Zombie new2 = new Zombie(dancer.getZombieHatColor());
 		congaLine.add(new1);
-		congaLine.add(new2);
-		Node<Zombie> front = new Node<Zombie>(new1);
-		Node<Zombie> end = new Node<Zombie>(new2);
-		congaLine.setHead(front);
-		congaLine.setTail(end);
-		congaLine.add(dancer);
+		Node<Zombie> end = new Node<Zombie>(new1);
+		Zombie new2 = new Zombie(dancer.getZombieHatColor());
 		Node<Zombie> mid = new Node<Zombie>(dancer);
 		int spot = 0;
 		Node<Zombie> current = congaLine.getHead();
+		Node<Zombie> previous = current.getPrev();
 		while (current != null) {
 			if (spot == middle) {
-				current.setNext(mid);
+				previous.setNext(mid);
+				mid.setNext(current);
+			current.setPrev(mid);
+			mid.setNext(current);
+	//			mid.setPrev(current);
+//				current.setNext(mid);
+			break;
  			}
 			current = current.getNext();
+			previous = current.getPrev();
 			spot = spot + 1;
 		}
 	}
@@ -127,8 +144,7 @@ public class RainbowZombieCongaLine {
 	 * color to the end of the line.
 	 */
 	public void rainbowBrains(Zombie dancer) {
-		Node<Zombie> head = new Node<Zombie>(dancer);
-		congaLine.setHead(head);
+		engine(dancer);
 		Zombie r = new Zombie(ZombieHatColor.R);
 		Zombie o = new Zombie(ZombieHatColor.O);
 		Zombie y = new Zombie(ZombieHatColor.Y);

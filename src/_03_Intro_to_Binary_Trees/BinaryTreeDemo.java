@@ -44,6 +44,10 @@ myFirstBinaryTree.insert(11);
 myFirstBinaryTree.printHorizontal();
 myFirstBinaryTree.delete(7);
 myFirstBinaryTree.printHorizontal();
+for(int i = 0; i<myFirstBinaryTree.getRoot().getValue(); i++) {
+	
+}
+
     }
 
 }
