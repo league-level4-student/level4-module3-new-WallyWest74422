@@ -34,20 +34,36 @@ public class BinaryTreeDemo {
 
     public static void main(String[] args) {
 BinaryTree <Integer> myFirstBinaryTree = new BinaryTree<Integer>();
-Node<Integer> parent = new Node<Integer>(1);
-parent = myFirstBinaryTree.getRoot();
+//parent = myFirstBinaryTree.getRoot();
 myFirstBinaryTree.insert(3);
+myFirstBinaryTree.insert(2);
+myFirstBinaryTree.insert(4);
+myFirstBinaryTree.insert(1);
 myFirstBinaryTree.insert(5);
-myFirstBinaryTree.insert(7);
-myFirstBinaryTree.insert(9);
-myFirstBinaryTree.insert(11);
+myFirstBinaryTree.insert(6);
+Node<Integer> parent = myFirstBinaryTree.getRoot();
 myFirstBinaryTree.printHorizontal();
-myFirstBinaryTree.delete(7);
+myFirstBinaryTree.delete(4);
+myFirstBinaryTree.insert(4);
 myFirstBinaryTree.printHorizontal();
-for(int i = 0; i<myFirstBinaryTree.getRoot().getValue(); i++) {
-	
-}
+myFirstBinaryTree.printVertical();
+myFirstBinaryTree.search(5);
+Node<Integer> current;
+current = myFirstBinaryTree.getRoot();
+myFirstBinaryTree.printVertical();
+multiply(current);
+
+myFirstBinaryTree.printVertical();
+
 
     }
-
+public static void multiply(Node<Integer> current) {
+	current.setValue(current.getValue()*2);
+if(current.getLeft()!=null) {
+	multiply(current.getLeft());
+}
+if(current.getRight()!=null) {
+	multiply(current.getRight());
+}
+}
 }
