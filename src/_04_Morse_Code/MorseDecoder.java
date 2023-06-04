@@ -71,15 +71,20 @@ String morseCode =JOptionPane.showInputDialog("Please enter a line of Morse Code
 String [] letters = morseCode.split(" ");
 String [] spaces = morseCode.split("");
 for(int i = 0; i<morseCode.length(); i++) {
-if((spaces[i])== " ") {
-	System.out.println(i);
-}
+//if((spaces[i])== " ") {
+//	System.out.println(i);
+//}
 }
 //		String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
 //		String[] letters = morseCode.split(" ");
 		Node<MorseCode> current = mcTree.getRoot();
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < letters.length; i++) {
+			if(letters[i].equals("/")) {
+				builder.append(' ');
+				i++;
+			}
+			
 			builder.append(findLetter(letters[i], current));
 		}
 		System.out.println(builder.toString());
@@ -87,6 +92,7 @@ if((spaces[i])== " ") {
 	}
 
 	String findLetter(String s, Node<MorseCode> mc) {
+
 		if (s.length() == 0) {
 			return mc.getValue().getDecoded();
 		}
